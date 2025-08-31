@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Give Me That | A Lightweight Retrieval‑Based System for Interactive Point‑to‑Grasp Manipulation</title>
+  <meta name="description" content="Give Me That: A lightweight retrieval‑based point‑to‑grasp system with intuitive pointing, fast pose retrieval from a shape‑centric database, and grasp retargeting for execution." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #1a1a1a;
+      --muted: #5e5e5e;
+      --brand: #6b4eff;
+      --card: #f7f7fb;
+      --border: #e8e8ef;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 20px 88px; }
+    header { text-align: center; padding: 24px 0 8px; }
+    h1 { font-size: clamp(28px, 4.2vw, 44px); margin: 0 0 8px; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: 18px; margin-top: 6px; }
+    .authors, .affils { margin: 10px auto 0; text-align: center; color: var(--muted); }
+    .authors a { color: inherit; }
+    .badge { display: inline-block; padding: 6px 10px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; font-size: 14px; margin: 10px 6px 0; }
+    .btns { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .btn { appearance: none; border: 1px solid var(--border); background: #fff; padding: 10px 14px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+    .btn:hover { background: var(--card); }
+    section { margin-top: 36px; padding: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; }
+    h2 { margin: 0 0 10px; font-size: 22px; }
+    p { margin: 10px 0; }
+    ul { margin: 8px 0 6px 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .callout { background: #fff; border: 1px dashed var(--border); padding: 12px 14px; border-radius: 12px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+    th { background: #fff; }
+    footer { margin-top: 42px; color: var(--muted); text-align: center; }
+    .note { font-size: 12px; color: var(--muted); }
+    .chip { display:inline-block; font-size:12px; padding:2px 8px; border:1px solid var(--border); border-radius:999px; background:#fff; margin-left:6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Give Me That</h1>
+      <div class="subtitle">A Lightweight Retrieval‑Based System for Interactive Point‑to‑Grasp Manipulation</div>
+      <div class="authors">
+        <strong>He‑Yang Xu</strong><sup>1*</sup>, <strong>Zi‑Yao Lin</strong><sup>1*</sup>, <strong>Mingqi Gao</strong><sup>1</sup>, <strong>Yu‑Hao Wei</strong><sup>1</sup>, <strong>Xiu‑Shen Wei</strong><sup>1†</sup>
+      </div>
+      <div class="affils"><sup>1</sup>Southeast University (SEU)</div>
+      <div class="subtitle"><span class="badge">IROS 2025 — Manuscript #5499 (Under Review)</span></div>
+      <div class="btns">
+        <a class="btn" href="./paper.pdf" target="_blank">PDF</a>
+        <!-- If you plan to upload to arXiv or GitHub, add links here later. -->
+      </div>
+      <div class="note">术语以英文为主，适当加入中文注释（Notes in Chinese for key terms appear inline where helpful）。</div>
+    </header>
+
+    <section id="abstract">
+      <h2>Abstract <span class="chip">摘要</span></h2>
+      <p>
+        Intuitive human‑robot interaction (HRI，<span class="note">人机交互</span>) is crucial for enabling robots to act as assistive partners, yet existing manipulation systems remain limited. 
+        Traditional methods based on pose estimation or grasp sampling often lack stability and generalization, while recent end‑to‑end methods demand large annotated datasets and still generalize poorly. 
+        
+        We present a lightweight system for point‑to‑grasp manipulation that builds a <em>shape‑centric</em> grasp database within minutes from a few demonstrations, intuitively recognizes human intent through 
+        pointing gestures, and efficiently retrieves and retargets grasp poses for execution. Real‑world experiments show high success rates on seen (100%) and unseen (92%) objects with inference latency as low as 0.148 s, 
+        demonstrating both effectiveness and real‑time capability.
+      </p>
+    </section>
+
+    <section id="overview">
+      <h2>Method Overview <span class="chip">方法概述</span></h2>
+      <div class="grid">
+        <div class="callout">
+          <strong>Stage (a): Intent Recognition</strong> — Intuitive pointing (手势指示) selects the target object and conveys grasp intent.
+        </div>
+        <div class="callout">
+          <strong>Stage (b): Fast Pose Retrieval</strong> — Retrieve candidate grasps from a <em>shape‑centric database</em> (形状中心化抓取库).
+        </div>
+        <div class="callout">
+          <strong>Stage (c): Grasp Retargeting & Execution</strong> — Retarget the retrieved pose to the current scene and execute safely in real time.
+        </div>
+      </div>
+      <ul>
+        <li><strong>Shape‑centric grasp database</strong> — Covers 4 shape categories (27 instances), built with ~5 min collection + ~8 min processing; easily extensible.</li>
+        <li><strong>Lightweight retrieval framework</strong> — Intuitive, safe, and controllable HRI (人机交互) with low latency.</li>
+        <li><strong>Real‑world results</strong> — High success on seen/unseen objects; inference latency 0.148 s.</li>
+      </ul>
+    </section>
+
+    <section id="results">
+      <h2>Results <span class="chip">实验结果</span></h2>
+      <h3>Success Rates (%) on Seen and Unseen Objects</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Settings</th>
+            <th>Objects</th>
+            <th>GraspNet</th>
+            <th>Ours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3">Seen Objects</td>
+            <td>Mug</td>
+            <td>88%</td>
+            <td><strong>96%</strong></td>
+          </tr>
+          <tr>
+            <td>Ball</td>
+            <td>84%</td>
+            <td><strong>100%</strong></td>
+          </tr>
+          <tr>
+            <td>Sandbag</td>
+            <td>76%</td>
+            <td><strong>96%</strong></td>
+          </tr>
+          <tr>
+            <td rowspan="3">Unseen Objects</td>
+            <td>White mug</td>
+            <td>88%</td>
+            <td><strong>92%</strong></td>
+          </tr>
+          <tr>
+            <td>Aluminum beverage can</td>
+            <td>80%</td>
+            <td><strong>100%</strong></td>
+          </tr>
+          <tr>
+            <td>Cardboard box</td>
+            <td>80%</td>
+            <td><strong>88%</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">以上为论文中表格的网页重现（简化版），用于快速浏览（非媒体资源，纯 HTML）。</p>
+
+      <h3 style="margin-top:18px;">Latency (s) Comparison</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Inference Latency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>RAM</td>
+            <td>23.578 ± 0.059</td>
+          </tr>
+          <tr>
+            <td>GraspNet</td>
+            <td>0.208 ± 0.012</td>
+          </tr>
+          <tr>
+            <td><strong>Ours</strong></td>
+            <td><strong>0.148 ± 0.001</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="bib">
+      <h2>Citation <span class="chip">引用</span></h2>
+      <p>If you find this work useful in your research, please cite:</p>
+      <pre style="white-space: pre-wrap; background:#fff; border:1px solid var(--border); padding:12px; border-radius:12px;">
+@inproceedings{lin2025givemethat,
+  title     = {Give Me That: A Lightweight Retrieval-Based System for Interactive Point-to-Grasp Manipulation},
+  author    = {He-Yang Xu and Zi-Yao Lin and Mingqi Gao and Yu-Hao Wei and Xiu-Shen Wei},
+  booktitle = {IROS},
+  year      = {2025}
+}
+      </pre>
+      <p class="note">（如需 BibTeX 细化字段，后续可按最终发表信息更新。）</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact <span class="chip">联系</span></h2>
+      <p>Correspondence: <a href="mailto:ziyaolin@seu.edu.cn">ziyaolin@seu.edu.cn</a> (example) · <span class="note">可替换为实际联系人与邮箱</span></p>
+    </section>
+
+    <footer>
+      <p>© 2025 Southeast University — This page is a minimal, dependency‑free project page generated from the IROS25_5499_MS manuscript.</p>
+      <p class="note">No external <code>media/</code> or <code>static/</code> dependencies. Pure HTML/CSS only.</p>
+    </footer>
+  </div>
+</body>
+</html>
