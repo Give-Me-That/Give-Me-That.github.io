@@ -39,7 +39,16 @@
     /* Abstract block: image + paragraph like original hero section style */
     .abstract-row{display:grid;grid-template-columns:340px 1fr;gap:18px;align-items:start}
     @media (max-width:860px){ .abstract-row{grid-template-columns:1fr} }
-    .abstract-img{width:100%;height:auto;border:1px solid var(--border);border-radius:12px;background:#fff}
+    .abstract-img{
+      max-width:820px;
+      width:100%;
+      height:auto;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:#fff;
+      display:block;
+      margin:0 auto;
+    }
   </style>
 </head>
 <body>
@@ -60,19 +69,18 @@
         <div class="btns">
           <a class="btn" href="./IROS25_5499_MS.pdf" target="_blank">PDF</a>
         </div>
-        <div class="note">专有名词以英文为主，括号内给出中文注释（English terms with brief Chinese notes when needed）。</div>
+        <div class="is-size-6" style="color: var(--muted);">* indicates equal contributions</div>
       </div>
     </header>
 
     <section id="abstract">
       <h2>Abstract <span class="note">（摘要）</span></h2>
-      <div class="abstract-row">
+      <div style="text-align:center;">
         <!-- Replace abstract.png with your uploaded image; keep same layout/fonts -->
         <img class="abstract-img" src="./abstract.png" alt="Abstract Figure" />
-        <div>
-          <p class="is-size-5" style="margin-top:0;">
+        <p class="is-size-5" style="margin:16px auto 0; max-width:820px;">
             <!-- Paste your abstract paragraph here. The font family/size matches the original template (≈ Bulma .is-size-5). -->
-            Intuitive human‑robot interaction (HRI，人机交互) is crucial for enabling robots to act as assistive partners... <!-- placeholder text to be replaced by you -->
+            Intuitive human-robot interaction (HRI， 人机交互) is crucial for enabling robots to act as assistive partners, yet existing manipulation systems remain limited. Traditional methods based on pose estimation or grasp sampling often lack stability and generalization, while recent end-to-end methods demand large annotated datasets and still generalize poorly. We present a lightweight system for point-to-grasp manipulation that builds a shape-centric grasp database within minutes from a few demonstrations, recognizes intent via pointing gestures, and efficiently retrieves & retargets grasp poses for execution. Real-world experiments demonstrate high success rates on seen and unseen objects with low inference latency.
           </p>
         </div>
       </div>
