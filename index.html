@@ -26,8 +26,8 @@
     .btns{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
     .btn{appearance:none;border:1px solid var(--border);background:#fff;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer}
     .btn:hover{background:var(--card)}
-    section{margin-top:36px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:16px}
-    h2{margin:0 0 10px;font-size:22px}
+    section{margin-top:36px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:16px;text-align:center}
+    h2{margin:0 0 10px;font-size:22px;background:#fff;border:1px solid var(--border);padding:12px;border-radius:12px;display:inline-block}
     p{margin:10px 0}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
     .callout{background:#fff;border:1px dashed var(--border);padding:12px 14px;border-radius:12px;color:var(--muted)}
@@ -74,26 +74,26 @@
     </header>
 
     <section id="abstract">
-      <h2>Abstract <span class="note">（摘要）</span></h2>
+      <h2>Abstract</h2>
       <div style="text-align:center;">
         <!-- Replace abstract.png with your uploaded image; keep same layout/fonts -->
         <img class="abstract-img" src="./abstract.png" alt="Abstract Figure" />
         <p class="is-size-5" style="margin:16px auto 0; max-width:820px;">
             <!-- Paste your abstract paragraph here. The font family/size matches the original template (≈ Bulma .is-size-5). -->
-            Intuitive human-robot interaction (HRI， 人机交互) is crucial for enabling robots to act as assistive partners, yet existing manipulation systems remain limited. Traditional methods based on pose estimation or grasp sampling often lack stability and generalization, while recent end-to-end methods demand large annotated datasets and still generalize poorly. We present a lightweight system for point-to-grasp manipulation that builds a shape-centric grasp database within minutes from a few demonstrations, recognizes intent via pointing gestures, and efficiently retrieves & retargets grasp poses for execution. Real-world experiments demonstrate high success rates on seen and unseen objects with low inference latency.
+            Intuitive human-robot interaction (HRI) is crucial for enabling robots to act as assistive partners, yet existing manipulation systems remain limited. Traditional methods based on pose estimation or grasp sampling often lack stability and generalization, while recent end-to-end methods demand large annotated datasets and still generalize poorly. We present a lightweight system for point-to-grasp manipulation that builds a shape-centric grasp database within minutes from a few demonstrations, recognizes intent via pointing gestures, and efficiently retrieves & retargets grasp poses for execution. Real-world experiments demonstrate high success rates on seen and unseen objects with low inference latency.
           </p>
         </div>
       </div>
     </section>
 
     <section id="overview">
-      <h2>Method Overview <span class="chip">方法概述</span></h2>
+      <h2>Method Overview</h2>
       <div class="grid">
         <div class="callout">
-          <strong>Stage (a): Intent Recognition</strong> — Intuitive pointing (手势指示) selects the target object and conveys grasp intent.
+          <strong>Stage (a): Intent Recognition</strong> — Intuitive pointing selects the target object and conveys grasp intent.
         </div>
         <div class="callout">
-          <strong>Stage (b): Fast Pose Retrieval</strong> — Retrieve candidate grasps from a <em>shape‑centric database</em> (形状中心化抓取库).
+          <strong>Stage (b): Fast Pose Retrieval</strong> — Retrieve candidate grasps from a <em>shape‑centric database</em>.
         </div>
         <div class="callout">
           <strong>Stage (c): Grasp Retargeting & Execution</strong> — Retarget the retrieved pose to the current scene and execute safely in real time.
@@ -101,13 +101,13 @@
       </div>
       <ul>
         <li><strong>Shape‑centric grasp database</strong> — Covers 4 shape categories (27 instances), built with ~5 min collection + ~8 min processing; easily extensible.</li>
-        <li><strong>Lightweight retrieval framework</strong> — Intuitive, safe, and controllable HRI (人机交互) with low latency.</li>
+        <li><strong>Lightweight retrieval framework</strong> — Intuitive, safe, and controllable HRI with low latency.</li>
         <li><strong>Real‑world results</strong> — High success on seen/unseen objects; inference latency 0.148 s.</li>
       </ul>
     </section>
 
     <section id="results">
-      <h2>Results <span class="chip">实验结果</span></h2>
+      <h2>Results</h2>
       <h3>Success Rates (%) on Seen and Unseen Objects</h3>
       <table>
         <thead>
@@ -153,7 +153,6 @@
           </tr>
         </tbody>
       </table>
-      <p class="note">以上为论文中表格的网页重现（简化版），用于快速浏览（非媒体资源，纯 HTML）。</p>
 
       <h3 style="margin-top:18px;">Latency (s) Comparison</h3>
       <table>
@@ -181,7 +180,7 @@
     </section>
 
     <section id="bib">
-      <h2>Citation <span class="chip">引用</span></h2>
+      <h2>Citation</h2>
       <p>If you find this work useful in your research, please cite:</p>
       <pre style="white-space: pre-wrap; background:#fff; border:1px solid var(--border); padding:12px; border-radius:12px;">
 @inproceedings{lin2025givemethat,
@@ -191,12 +190,11 @@
   year      = {2025}
 }
       </pre>
-      <p class="note">（如需 BibTeX 细化字段，后续可按最终发表信息更新。）</p>
     </section>
 
     <section id="contact">
-      <h2>Contact <span class="chip">联系</span></h2>
-      <p>Correspondence: <a href="mailto:ziyaolin@seu.edu.cn">ziyaolin@seu.edu.cn</a> (example) · <span class="note">可替换为实际联系人与邮箱</span></p>
+      <h2>Contact</h2>
+      <p>Correspondence: <a href="mailto:ziyaolin@seu.edu.cn">ziyaolin@seu.edu.cn</a></p>
     </section>
 
     <footer>
