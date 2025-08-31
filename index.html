@@ -5,70 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Give Me That | A Lightweight Retrieval‑Based System for Interactive Point‑to‑Grasp Manipulation</title>
   <meta name="description" content="Give Me That: A lightweight retrieval‑based point‑to‑grasp system with intuitive pointing, fast pose retrieval from a shape‑centric database, and grasp retargeting for execution." />
+  <!-- Fonts to match original template -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <style>
-    :root {
-      --bg: #ffffff;
-      --ink: #1a1a1a;
-      --muted: #5e5e5e;
-      --brand: #6b4eff;
-      --card: #f7f7fb;
-      --border: #e8e8ef;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-    a { color: var(--brand); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 20px 88px; }
-    header { text-align: center; padding: 24px 0 8px; }
-    h1 { font-size: clamp(28px, 4.2vw, 44px); margin: 0 0 8px; letter-spacing: -0.02em; }
-    .subtitle { color: var(--muted); font-size: 18px; margin-top: 6px; }
-    .authors, .affils { margin: 10px auto 0; text-align: center; color: var(--muted); }
-    .authors a { color: inherit; }
-    .badge { display: inline-block; padding: 6px 10px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; font-size: 14px; margin: 10px 6px 0; }
-    .btns { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    .btn { appearance: none; border: 1px solid var(--border); background: #fff; padding: 10px 14px; border-radius: 10px; font-weight: 600; cursor: pointer; }
-    .btn:hover { background: var(--card); }
-    section { margin-top: 36px; padding: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; }
-    h2 { margin: 0 0 10px; font-size: 22px; }
-    p { margin: 10px 0; }
-    ul { margin: 8px 0 6px 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-    .callout { background: #fff; border: 1px dashed var(--border); padding: 12px 14px; border-radius: 12px; color: var(--muted); }
-    table { width: 100%; border-collapse: collapse; font-size: 15px; }
-    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
-    th { background: #fff; }
-    footer { margin-top: 42px; color: var(--muted); text-align: center; }
-    .note { font-size: 12px; color: var(--muted); }
-    .chip { display:inline-block; font-size:12px; padding:2px 8px; border:1px solid var(--border); border-radius:999px; background:#fff; margin-left:6px; }
+    :root { --bg:#ffffff; --ink:#1a1a1a; --muted:#5e5e5e; --brand:#6510ad; --card:#f7f7fb; --border:#e8e8ef; }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:"Google Sans","Noto Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px 20px 88px}
+    /* === Mimic key Bulma sizes from the original === */
+    .title{font-weight:800;letter-spacing:-0.02em;margin:0 0 8px}
+    .title.is-1{font-size:3rem;line-height:1.1} /* ≈ Bulma on desktop */
+    @media (max-width:768px){ .title.is-1{font-size:2.25rem} }
+    .is-size-4{font-size:1.5rem}
+    .is-size-5{font-size:1.25rem}
+    .publication-title{color:var(--brand)}
+    .publication-authors, .affils{color:var(--muted)}
+    .author-block{display:inline-block;margin:0 .25rem}
+    .badge{display:none} /* removed per request */
+    .btns{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .btn{appearance:none;border:1px solid var(--border);background:#fff;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer}
+    .btn:hover{background:var(--card)}
+    section{margin-top:36px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:16px}
+    h2{margin:0 0 10px;font-size:22px}
+    p{margin:10px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .callout{background:#fff;border:1px dashed var(--border);padding:12px 14px;border-radius:12px;color:var(--muted)}
+    table{width:100%;border-collapse:collapse;font-size:15px}
+    th,td{border:1px solid var(--border);padding:8px 10px;text-align:left}
+    th{background:#fff}
+    footer{margin-top:42px;color:var(--muted);text-align:center}
+    .note{font-size:12px;color:var(--muted)}
+    /* Abstract block: image + paragraph like original hero section style */
+    .abstract-row{display:grid;grid-template-columns:340px 1fr;gap:18px;align-items:start}
+    @media (max-width:860px){ .abstract-row{grid-template-columns:1fr} }
+    .abstract-img{width:100%;height:auto;border:1px solid var(--border);border-radius:12px;background:#fff}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>Give Me That</h1>
-      <div class="subtitle">A Lightweight Retrieval‑Based System for Interactive Point‑to‑Grasp Manipulation</div>
-      <div class="authors">
-        <strong>He‑Yang Xu</strong><sup>1*</sup>, <strong>Zi‑Yao Lin</strong><sup>1*</sup>, <strong>Mingqi Gao</strong><sup>1</sup>, <strong>Yu‑Hao Wei</strong><sup>1</sup>, <strong>Xiu‑Shen Wei</strong><sup>1†</sup>
+      <div class="has-text-centered" style="text-align:center;padding:24px 0 8px;">
+        <h1 class="title is-1 publication-title">
+          Give Me That — A Lightweight Retrieval‑Based System for Interactive Point‑to‑Grasp Manipulation
+        </h1>
+        <div class="is-size-5 publication-authors">
+          <span class="author-block"><strong>He‑Yang Xu</strong><sup>1*</sup>,</span>
+          <span class="author-block"><strong>Zi‑Yao Lin</strong><sup>1*</sup>,</span>
+          <span class="author-block"><strong>Mingqi Gao</strong><sup>1</sup>,</span>
+          <span class="author-block"><strong>Yu‑Hao Wei</strong><sup>1</sup>,</span>
+          <span class="author-block"><strong>Xiu‑Shen Wei</strong><sup>1†</sup></span>
+        </div>
+        <div class="is-size-5 affils"><sup>1</sup>Southeast University (SEU)</div>
+        <div class="btns">
+          <a class="btn" href="./IROS25_5499_MS.pdf" target="_blank">PDF</a>
+        </div>
+        <div class="note">专有名词以英文为主，括号内给出中文注释（English terms with brief Chinese notes when needed）。</div>
       </div>
-      <div class="affils"><sup>1</sup>Southeast University (SEU)</div>
-      <div class="subtitle"><span class="badge">IROS 2025 — Manuscript #5499 (Under Review)</span></div>
-      <div class="btns">
-        <a class="btn" href="./paper.pdf" target="_blank">PDF</a>
-        <!-- If you plan to upload to arXiv or GitHub, add links here later. -->
-      </div>
-      <div class="note">术语以英文为主，适当加入中文注释（Notes in Chinese for key terms appear inline where helpful）。</div>
     </header>
 
     <section id="abstract">
-      <h2>Abstract <span class="chip">摘要</span></h2>
-      <p>
-        Intuitive human‑robot interaction (HRI，<span class="note">人机交互</span>) is crucial for enabling robots to act as assistive partners, yet existing manipulation systems remain limited. 
-        Traditional methods based on pose estimation or grasp sampling often lack stability and generalization, while recent end‑to‑end methods demand large annotated datasets and still generalize poorly. 
-        
-        We present a lightweight system for point‑to‑grasp manipulation that builds a <em>shape‑centric</em> grasp database within minutes from a few demonstrations, intuitively recognizes human intent through 
-        pointing gestures, and efficiently retrieves and retargets grasp poses for execution. Real‑world experiments show high success rates on seen (100%) and unseen (92%) objects with inference latency as low as 0.148 s, 
-        demonstrating both effectiveness and real‑time capability.
-      </p>
+      <h2>Abstract <span class="note">（摘要）</span></h2>
+      <div class="abstract-row">
+        <!-- Replace abstract.png with your uploaded image; keep same layout/fonts -->
+        <img class="abstract-img" src="./abstract.png" alt="Abstract Figure" />
+        <div>
+          <p class="is-size-5" style="margin-top:0;">
+            <!-- Paste your abstract paragraph here. The font family/size matches the original template (≈ Bulma .is-size-5). -->
+            Intuitive human‑robot interaction (HRI，人机交互) is crucial for enabling robots to act as assistive partners... <!-- placeholder text to be replaced by you -->
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="overview">
